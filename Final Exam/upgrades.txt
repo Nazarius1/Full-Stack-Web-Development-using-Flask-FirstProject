@@ -1,0 +1,7 @@
+features added to the website:
+
+1. Create a responsive navigation pane
+2. Add quotes with java script which randomly taken every time the page loads
+3. Add possibilty for user to add task and edit
+4. Add connection to online social media
+5. create footers

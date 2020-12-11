@@ -1,0 +1,21 @@
+Background Information:
+
+Once your application is deployed, you (the Admin of the website) will need a convenient way to login and perform administrative functions. In this project, you'll build yourself an Admin interface.
+
+Assignment Details:
+
+First, create a new Administrator manually in your database (we'd recommend putting them in their own table). Now add the following features to your existing application:
+
+1. If someone visits the /admin page, they should view an HTML login form (just for Admins, completely separate from the user's login form). The admin you created should be the only user allowed to login there. Any other user credentials should fail.
+
+2. Once an Admin logs in, they should view a dashboard. The dashboard should display 4 metrics:
+   A: Total user signups
+   B: Total signups in the last 24 hours
+   C: Total lists created
+   D: Lists created in the last 24 hours
+
+3. If the admin clicks on either of the User metrics, they should be taken to the /admin/users page. This page should display a table that lists the last 50 users who have signed up. If there are more than 50 users in the system, there should be a "more" button that takes the admin to the next page of results. The admin should be able to click through paginated pages to eventually view all of the users in the system.
+
+4. If the admin clicks on any of the users in the table, they should view all of the user details except the password. They should then be able to click a button to delete the user. Deleting the user should automatically delete all of the user's associated lists and tasks as well.
+
+5. Once you have built these features into your application, choose a different frontend library than the one you used for Homework #5. Use this other library to style your Admin dashboard accordingly. For example: if you used Twitter Bootstrap for homework 5, then use Foundation or one of the others for this project.

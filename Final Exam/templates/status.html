@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+	<meta charset = "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Status</title>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<!-- navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<div class="container-fluid">
+		<!-- <a class="navbar-brand" href="#"><img src="static/img/logo.jpg/"> -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+				<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+				</li>
+					<li class="nav-item">
+							<a class="nav-link" href="/about">About</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link" href="/termsOfUse">Terms of Use</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link" href="/privacy">Privacy</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link" href="/logout">Log out</a>
+					</li>
+			</ul>
+		</div>
+</div>
+</nav>
+</head>
+	<body class="body">
+		<!-- <a href="/">Home</a> <a href="/about">About</a> <a href="/privacy">Privacy</a> <a href="/termsOfUse">Terms of Use</a>	<a href="/logout">Log out</a><br><br>-->
+		<h3 style="text-align: center;"><u>Employee Registration Table - User Specific</u></h3>
+			<form action = '/status' method = "POST">
+				<table class="table-bordered">
+					<thead class="thead-dark">
+					<tr>
+						<th style="text-align: center;">Number</th>
+						<th style="text-align: center;">Job Code</th>
+						<th style="text-align: center;">User Name</th>
+						<th style="text-align: center;">Task</th>
+						<th style="text-align: center;">Status</th>
+						<th style="text-align: center;">Action</th>
+					</tr>
+					{%for row in tableTask%}
+					<tr>
+						<td>{{row[0]}}</td>
+						<td>{{row[1]}}</td>
+						<td>{{row[2]}}</td>
+						<td>{{row[3]}}</td>
+						<td>{{row[4]}}</td>
+						<td>
+							<a href="/update/{{row[0]}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row[0]}}">Edit Status</a>
+							<!-- <a href="/delete/{{row[0]}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete job code ' + {{row[1]}} + ' - number ' + {{row[0]}} + ' ?')">Delete</a> -->
+						</td>
+					</tr>
+					  <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+			 			<div class="modal-content">
+								<div class="modal-header">
+									 <button type="button" class="close" data-dismiss="modal">&times;</button>
+									 <h4 class="modal-title">Edit Status</h4>
+								</div>
+							<div class="modal-body">
+								 <form action="{{ url_for('editStatus') }}" method="POST">
+										<div class="form-group">
+											 <label>Status:</label>
+											 <input type="hidden"  name="Number" value="{{row[0]}}">
+											 <select name="task" id="taskId">
+												 	<option disabled selected value> -- select task -- </option>
+							 	  				<option value="Design">Design</option>
+							 	  				<option value="Test">Testing</option>
+							 	  				<option value="In Production">In Production</option>
+							 				 </select>
+										</div>
+										<div class="form-group">
+				 						<button class="btn btn-primary" type="submit">submit</button>
+										</div>
+								 </form>
+							</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+			 			</div>
+					</div>
+					{%endfor%}
+						</div>
+					</thead>
+				</table>
+			</form>
+<h1 hidden: space houder></h1>
+<h1 hidden: space houder></h1>
+	  <p><button><a href="/dashboard"> Add new task</a></button></p>
+		<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+		<script type="text/javascript" src="{{url_for('static', filename = 'js/modal.js')}}"></script>
+	</body>
+</html>
